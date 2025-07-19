@@ -1,7 +1,7 @@
-import { User, Role } from "@/types/user";
+import { User} from "@/types/user";
 
 const STORAGE_KEY = 'auth_user';
-const users = [
+const users: User[] = [
     { username: 'admin', password: 'admin', role: 'admin' },
     { username: 'member', password: 'member', role: 'member' },
 ];
