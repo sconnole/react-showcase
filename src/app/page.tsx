@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUser } from '@/lib/auth';
+import { getUser, login } from '@/lib/auth';
 
 export default function Home() {
   const router = useRouter();
@@ -33,8 +33,7 @@ function LoginForm() {
   const [role, setRole] = useState<'admin' | 'member'>('member');
 
   const handleLogin = () => {
-    const user = { username, role };
-    localStorage.setItem('user', JSON.stringify(user));
+    login(username, role); 
     router.push('/dashboard');
   };
 
