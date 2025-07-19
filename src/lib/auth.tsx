@@ -1,4 +1,5 @@
-type User = { username: string; role: string};
+import { User, Role } from "@/types/user";
+
 const STORAGE_KEY = 'auth_user';
 const users = [
     { username: 'admin', password: 'admin', role: 'admin' },
