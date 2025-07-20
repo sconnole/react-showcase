@@ -1,19 +1,18 @@
-import { User} from "@/types/user";
+import { User} from "@/lib/types/user";
 
 const STORAGE_KEY = 'auth_user';
-const users: User[] = [
+const LOCAL_USERS: User[] = [
     { username: 'admin', password: 'admin', role: 'admin' },
     { username: 'member', password: 'member', role: 'member' },
 ];
 
-
-export function getUser(): User | null {
+export function getStoredUser(): User | null {
   const stored = localStorage.getItem(STORAGE_KEY);
   return stored ? JSON.parse(stored) : null;
 }
 
-export function login(username: string, password: string): User | null {
-  const match = users.find((u) => u.username === username && u.password === password);
+export function storeUser(user: User): User | null {
+  const match = LOCAL_USERS.find((u) => u.username === user.username && u.password === user.password);
   if (match) {
     const user: User = { username: match.username, role: match.role };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
@@ -23,6 +22,6 @@ export function login(username: string, password: string): User | null {
   return null;
 }
 
-export function logout() {
+export function clearStoredUser(): void { 
   localStorage.removeItem(STORAGE_KEY);
 }
